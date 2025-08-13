@@ -6,13 +6,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   @Column(unique = true, nullable = false)
   @Email
@@ -36,6 +37,7 @@ public class User implements UserDetails {
   private List<Task> tasks;
 
   public User() {}
+
   public User(String email, String password, String firstName, String lastName) {
     this.email = email;
     this.password = password;
@@ -43,8 +45,16 @@ public class User implements UserDetails {
     this.lastName = lastName;
   }
   @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return new ArrayList<>();
+  }
+  @Override
   public String getUsername() {
     return email;
+  }
+  @Override
+  public String getPassword() {
+    return password;
   }
   @Override
   public boolean isAccountNonExpired() {
@@ -62,10 +72,11 @@ public class User implements UserDetails {
   public boolean isEnabled() {
     return true;
   }
-  public long getId() {
+  //Getters and Setters
+  public Long getId() {
     return id;
   }
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
   public String getEmail() {
@@ -73,9 +84,6 @@ public class User implements UserDetails {
   }
   public void setEmail(String email) {
     this.email = email;
-  }
-  public String getPassword() {
-    return password;
   }
   public void setPassword(String password) {
     this.password = password;
