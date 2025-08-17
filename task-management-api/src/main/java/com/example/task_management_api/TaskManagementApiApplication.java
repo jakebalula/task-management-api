@@ -8,5 +8,5 @@ public class TaskManagementApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TaskManagementApiApplication.class, args);
-	}
+  }
 }
