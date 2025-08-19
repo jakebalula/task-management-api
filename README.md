@@ -1,4 +1,5 @@
 Task Management API
+
 A RESTful API for managing tasks with user authentication, built with Spring Boot and Java. This project shows modern backend development
 practices including REST API design, database integration, and secure management.
 
